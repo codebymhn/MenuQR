@@ -1,0 +1,112 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #f6f4ff;
+  --color-brand-100: #eeeafe;
+  --color-brand-200: #ddd5fd;
+  --color-brand-300: #c3b5fb;
+  --color-brand-400: #a28cf6;
+  --color-brand-500: #8466ee;
+  --color-brand-600: #6a4be0;
+  --color-brand-700: #5638c4;
+  --color-brand-800: #46309e;
+  --color-brand-900: #3a2a7e;
+  --color-brand-950: #241a52;
+
+  --color-ink: #1b1735;
+  --color-ink-soft: #4a4566;
+  --color-muted: #77729a;
+  --color-line: #e9e5f7;
+  --color-canvas: #f5f3fc;
+
+  --shadow-soft: 0 1px 2px rgb(40 24 120 / 0.04), 0 8px 24px -8px rgb(40 24 120 / 0.1);
+  --shadow-lift: 0 2px 4px rgb(40 24 120 / 0.05), 0 24px 48px -16px rgb(40 24 120 / 0.22);
+  --shadow-phone: 0 50px 100px -30px rgb(36 26 82 / 0.45), 0 30px 60px -30px rgb(36 26 82 / 0.35);
+
+  --animate-fade-in: fade-in 0.25s ease-out both;
+  --animate-slide-up: slide-up 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(6px);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+  ::selection {
+    background: var(--color-brand-200);
+  }
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-white shadow-soft;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-sm text-ink transition outline-none placeholder:text-muted/70 focus:border-brand-400 focus:ring-4 focus:ring-brand-100;
+  }
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl;
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-200) transparent;
+}
+
+.app-bg {
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgb(195 181 251 / 0.35), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgb(221 213 253 / 0.45), transparent 60%),
+    var(--color-canvas);
+}
